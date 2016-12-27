@@ -1,11 +1,8 @@
-f = open('input/day01', 'r')
+from helper import *
 
-content = f.read()
-if not content:
-    print("empty content! Check again!")
+content = get_content('input/day01')[0]
 
 instructions = content.split(", ")
-print(instructions)
 
 x, y, d = 0, 0, 0
 vx = [0, -1, 0, 1]
@@ -24,9 +21,9 @@ for instruction in instructions:
 
     for i in range(step):
         x, y = x + vx[d], y + vy[d]
-        if s.__contains__((x, y)):
+        if (x, y) in s:
             found = True
-            print('Result', abs(x) + abs(y))
+            print('Result: ', abs(x) + abs(y))
             break
         else:
             s.add((x, y))
