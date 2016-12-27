@@ -1,14 +1,19 @@
 from helper import *
 
 IS_TEST = False
+inp = 'input/day02'
+
 if IS_TEST:
-    content = get_content('input/day02.sample')
+    content = get_content(inp + '.sample')
 else:
-    content = get_content('input/day02')
+    content = get_content(inp)
 
-
+# Keypad of part 1
 # keypad = ['123', '456', '789']
+
+# Keypad of part 2
 keypad = ['##1##', '#234#', '56789', '#ABC#', '##D##']
+
 move = {'U': [-1, 0], 'D': [1, 0], 'L': [0, -1], 'R': [0, 1]}
 
 start = '5'
