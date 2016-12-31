@@ -4,9 +4,9 @@ IS_TEST = False
 inp = 'input/day02'
 
 if IS_TEST:
-    content = get_content(inp + '.sample')
+    content = get_content_from_file(inp + '.sample')
 else:
-    content = get_content(inp)
+    content = get_content_from_file(inp)
 
 # Keypad of part 1
 # keypad = ['123', '456', '789']

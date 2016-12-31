@@ -1,6 +1,6 @@
 from helper import *
 
-content = get_content('input/day01')[0]
+content = get_content_from_file('input/day01')[0]
 
 instructions = content.split(", ")
 
