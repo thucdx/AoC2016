@@ -17,6 +17,17 @@ def checksum(txt):
     return ''.join([c[0] for c in sorted(m.items(), key=lambda x: (-x[1], x[0]))][:5])
 
 
+def cipher(txt, shift):
+    res = ''
+    total = ord('z') - ord('a') + 1
+    for c in txt:
+        if 'a' <= c <= 'z':
+            res += chr((ord(c) - ord('a') + shift + total) % total + ord('a'))
+        else:
+            res += ' '
+    return res
+
+
 # return sector_id if room is valid, 0 if not
 def get_sector_id(name):
     pattern = '([a-z\-]+)-(\d+)\[(\w+)\]'
@@ -28,10 +39,21 @@ def get_sector_id(name):
             return int(m.group(2))
     return 0
 
+
+def decode(name):
+    pattern = '([a-z\-]+)-(\d+)\[(\w+)\]'
+    m = re.match(pattern, name)
+
+    if m:
+        cksum = checksum(m.group(1))
+        if m.group(3) == cksum:
+            return cipher(m.group(1), int(m.group(2)))
+    return 'Invalid'
+
 res = 0
 for name in content:
-    sector_id = get_sector_id(name)
-    print(name, sector_id)
-    res += sector_id
-
-print('Result', res)
+    decoded = decode(name)
+    print(decode(name))
+    if decoded.find('northpole') >= 0:
+        print('FOUND: ', name)
+        break
